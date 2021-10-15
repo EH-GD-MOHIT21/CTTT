@@ -1,17 +1,21 @@
 import os
+from django.conf.urls import url
 
-from channels.auth import AuthMiddlewareStack
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+
 from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
-import tictactoe.sockets.routing as tttsr
+django_asgi_app = get_asgi_application()
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
+from channels.auth import AuthMiddlewareStack   
+import tictactoe.sockets.routing
+
 
 application = ProtocolTypeRouter({
-  "http": get_asgi_application(),
-  "websocket": AuthMiddlewareStack(
+    "http": django_asgi_app,
+    'websocket': AuthMiddlewareStack(
         URLRouter(
-            tttsr.websocket_urlpatterns
+            tictactoe.sockets.routing.websocket_urlpatterns
         )
-    ),
+    )
 })

@@ -1,0 +1,192 @@
+/* login page and signup page */
+
+.containerlogin,
+.containerloginotp,
+.containersignup,
+.containersignupotp,
+.gamejoinorcreate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #1976d2;
+    width: 500px;
+    margin: 20px auto;
+    padding: 30px 10px;
+    position: relative;
+    padding-bottom: 70px;
+}
+
+.containerlogin .titlelog,
+.containerloginotp .titlelog,
+.containersignup .titlelog,
+.containersignupotp .titlelog {
+    text-align: center;
+}
+
+.containerlogin .titlelog h3,
+.containerloginotp .titlelog h3,
+.containersignup .titlelog h3,
+.containersignupotp .titlelog h3 {
+    color: #1976d2;
+}
+
+.containerlogin .textfieldclogin,
+.containerlogin .passfieldclogin,
+.containerloginotp .textfieldclogin,
+.containersignup .textfieldcsignup,
+.containersignup .passfieldcsignup,
+.containersignupotp .textfieldcsignup,
+.gamejoinorcreate .textfieldclogin {
+    width: 350px;
+}
+
+.containerlogin .fplogin,
+.containerlogin .loginfromca,
+.containersignup .signupfromca {
+    display: block;
+    margin: 10px;
+}
+
+.containerlogin .buttonfieldclogin,
+.containerloginotp .buttonfieldclogin,
+.containersignup .buttonfieldcsignup,
+.containersignupotp .buttonfieldcsignup,
+.gamejoinorcreate .buttonfieldclogin {
+    position: absolute;
+    right: 80px;
+    bottom: 20px;
+}
+
+.containerlogin .cafromlogin {
+    position: absolute;
+    left: 80px;
+    bottom: 20px;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 3px;
+}
+
+.containerlogin .cafromlogin:hover {
+    background: #1976d2;
+    color: white;
+    font-weight: 500;
+}
+
+.vh100 {
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.containerloginotp,
+.containersignupotp {
+    display: none;
+}
+
+.containersignup {
+    padding-bottom: 50px;
+}
+
+@media(max-width:600px) {
+    .containerlogin,
+    .containerloginotp,
+    .containersignup,
+    .containersignupotp,
+    .gamejoinorcreate {
+        width: 95% !important;
+        padding-bottom: 30px;
+    }
+    .containerlogin .cafromlogin {
+        position: unset;
+    }
+    .gamejoinorcreate {
+        flex-direction: column;
+    }
+    .containerlogin .buttonfieldclogin,
+    .containerloginotp .buttonfieldclogin,
+    .containersignup .buttonfieldcsignup,
+    .containersignupotp .buttonfieldcsignup,
+    .gamejoinorcreate .buttonfieldclogin {
+        position: unset;
+        display: block;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width:400px) {
+    .containerlogin .textfieldclogin,
+    .containerlogin .passfieldclogin,
+    .containerloginotp .textfieldclogin,
+    .containersignup .textfieldcsignup,
+    .containersignup .passfieldcsignup,
+    .containersignupotp .textfieldcsignup,
+    .gamejoinorcreate .textfieldclogin {
+        width: 100%;
+    }
+}
+
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+}
+
+.col {
+    flex: 1 0 0%;
+}
+
+.row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-top: var(--bs-gutter-y);
+}
+
+.col {
+    flex: 1 0 0%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+}
+
+.container-fluid {
+    margin: 1% auto;
+}
+
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    width: 90vw;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.loginprogress,
+.loginprogressotp,
+.signupprogress,
+.signupprogressotp {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    display: none;
+}
+
+#gametokenverifier {
+    display: block;
+}
+
+#verifier,
+#verifierp {
+    word-break: break-all;
+}

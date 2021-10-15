@@ -1,0 +1,9 @@
+--ADD signup api                                                                            --done
+--ADD verification signup api                                                               --done
+--SEND PERTICULAR MESSAGE AND REMOVE USER IF NOT RECEIVE INPUT TILL 30-40 SEC
+--ADD NORMAL CHAT OPTION OR VOICE CHAT IN APP
+--ADD SPINNER TO APP                                                                        --done
+--DO CODE REFACTORING
+--DESIGN PROPERLY
+--FIX STATUS SPAN MODIFY MEDIA QUERIES
+--ATTACH GAME MODEL WITH SIGNUP

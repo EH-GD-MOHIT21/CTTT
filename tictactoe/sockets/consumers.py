@@ -13,7 +13,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def update_active(self):
         try:
             gm = GameManager.objects.get(gametoken=self.room_name)
-            users = gm.Game_users.split("($de$)")
+            if gm.Game_users == None:
+                gm.Game_users = ''
+            try:
+                users = gm.Game_users.split("($de$)")
+            except:
+                users = []
             if self.scope["user"].username in users:
                 self.ignore = False
                 return (False,None)
@@ -44,7 +49,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     return(True,"Let's start the game")
                 return (True,None)
             return (False,None)
-        except:
+        except Exception as e:
+            # print(e)
             return (False,None)
 
     def update_inactive(self):
@@ -77,6 +83,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         else:
             status,message = await sync_to_async(self.update_active, thread_sensitive=True)()
+            # print(status,message)
             if status:
 
                 # Join room group

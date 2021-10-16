@@ -1,4 +1,4 @@
-const roomName = "mohit";
+const roomName = document.URL.split('/')[document.URL.split('/').length - 1];
 
 const chatSocket = new WebSocket(
     'ws://' +

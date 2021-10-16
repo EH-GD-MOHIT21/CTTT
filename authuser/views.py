@@ -4,7 +4,7 @@ from rest_framework.status import *
 from rest_framework.views import APIView
 from .app_utils.data_handler import *
 from .app_utils.verification import Fetch_cache, set_cache,GenerateOTP,GenerateSlug
-from .app_utils.mailer import SubjectAndMessageGenLogin, send_mail,SubjectAndMessageGenSignup,SubjectAndMessageGenFP,ConfirmationCPLogin
+from .app_utils.mailer import SubjectAndMessageGenLogin, send_mail,SubjectAndMessageGenSignup,SubjectAndMessageGenFP,ConfirmationCPLogin, send_room_token_message
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.contrib.auth import authenticate,login,logout
@@ -83,14 +83,17 @@ class VerifyRegister(APIView):
             game = GameManager(index=user)
             token = game.Generate_Game_Token
             game.save()
+            subject,message = send_room_token_message(user.first_name,token)
+            send_mail(to=email,subject=subject,message=message)
             # deleting the created cache
             try:
                 cache.delete_pattern(email)
             except:
                 pass
-            return Response({'status':HTTP_200_OK,'message':f'user registerd successfully. game token is \n{token}'})
+            return Response({'status':HTTP_200_OK,'message':f'user registerd successfully Your game token mailed to you.'})
 
         except Exception as e:
+            print(e)
             return Response({'status':HTTP_403_FORBIDDEN,'message':'user not exists.'})
         
 

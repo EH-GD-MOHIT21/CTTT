@@ -190,3 +190,26 @@
 #verifierp {
     word-break: break-all;
 }
+
+.bottomhandler {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+#settime {
+    font-weight: 500;
+    color: crimson;
+    font-size: 20px;
+}
+
+#loggame {
+    font-weight: 500;
+    font-size: 20px;
+    color: green;
+}
+
+.col {
+    font-size: 50px;
+}

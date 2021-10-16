@@ -46,6 +46,15 @@ def SubjectAndMessageGenFP(username,token):
     return (subject,message)
 
 
+def send_room_token_message(first_name,token):
+    subject = f"Welcome {first_name}! to cttt.com Your game token is here!"
+
+    message = f"Hello {first_name} Your Permanent Game token is\n\n\n{token} please keep the record of game token else you'll not be able to play. please <a href='http://cttt.herokuapp.com/play/{token}'>click here to play a game</a> \n\n\n Thanks\nRegards\ncttt.com"
+
+    return (subject,message)
+
+
+
 def ConfirmationCPLogin(username,is_fp=True):
     if is_fp:
         subject = "Password Has been Successfully Changed on cttt.com"

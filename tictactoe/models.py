@@ -13,11 +13,11 @@ class GameManager(models.Model):
 
     @property
     def Generate_Game_Token(self):
-        valid_ucs = [chr(i) for i in range(65,91)] + [chr(i) for i in range(97,123)] + [str(i) for i in range(0,10)] + ['_']
+        valid_ucs = [chr(i) for i in range(65,91)] + [chr(i) for i in range(97,123)] + [str(i) for i in range(0,10)]
         token = ''
         for i in range(70):
             token += choice(valid_ucs)
-            value = GameManager.objects.all().count()
-            token += str(value)
+        value = GameManager.objects.all().count()
+        token += str(value)
         self.gametoken = token
         return token

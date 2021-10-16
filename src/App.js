@@ -53,7 +53,7 @@ function App() {
         {loggedIn ? <Redirect to="/game" /> : <Forgetpass getCookie={getCookie}/>}
           </Route>
         <Route path="/play/:group">
-          {loggedIn ? <Playgame/> : <Login getCookie={getCookie}/>}
+          {loggedIn ? <Playgame getCookie={getCookie}/> : <Login getCookie={getCookie}/>}
           </Route>
       </Switch>
     </Router>

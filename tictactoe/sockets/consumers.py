@@ -16,7 +16,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             users = gm.Game_users.split("($de$)")
             if self.scope["user"].username in users:
                 self.ignore = False
-                return False
+                return (False,None)
             if gm.active_members < 2:
                 if gm.Game_users == '' or gm.Game_users == None:
                     gm.Game_users += str(self.scope["user"].username)
@@ -41,10 +41,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     except:
                         pass
                     cache.set(str(self.room_name)+"move", "O")
-                return True
-            return False
+                    return(True,"Let's start the game")
+                return (True,None)
+            return (False,None)
         except:
-            return False
+            return (False,None)
 
     def update_inactive(self):
         try:
@@ -75,7 +76,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.close()
 
         else:
-            if await sync_to_async(self.update_active, thread_sensitive=True)():
+            status,message = await sync_to_async(self.update_active, thread_sensitive=True)()
+            if status:
 
                 # Join room group
                 await self.channel_layer.group_add(
@@ -84,6 +86,17 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 )
 
                 await self.accept()
+
+                if message!=None:
+                    await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                    'type': 'chat_message',
+                    'message': f"{message}",
+                    "additional": True,
+                    "move": 'X'
+                    }
+            )
 
             else:
                 self.ignore = False
@@ -197,6 +210,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = event['message']
         additional = event["additional"]
         player_id = event["move"]
+        if cache.get(str(self.room_name)+"move") == "X":
+            next_move = "O"
+        else:
+            next_move = "X"
         try:
             is_game = event["is_game"]
             position = event["position"]
@@ -210,5 +227,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             "additional": additional,
             "move": player_id,
             "is_game": is_game,
-            "position": position
+            "position": position,
+            "next_move":next_move,
+            "time":30
         }))

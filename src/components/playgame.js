@@ -21,11 +21,16 @@ export default function Playgame() {
                 <div className="col" id="m9">-</div>
             </div>
 
-            <ScriptTag src="/public/tttserver.js"></ScriptTag>
         </div>
-        <div className="logscontainergame">
-            <span id="loggame"></span>
+        <div className="bottomhandler">
+            <div className="logscontainergame">
+                <span id="loggame">Welcome to cttt.com</span>
+            </div>
+            <div className="timemanager">
+                <span id="settime">30</span><span> Sec Left to Respond</span>
+            </div>
         </div>
+        <ScriptTag src="/public/tttserver.js"></ScriptTag>
         </>
     )
 }

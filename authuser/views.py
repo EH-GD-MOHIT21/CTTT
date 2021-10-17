@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.status import *
 from rest_framework.views import APIView
 from .app_utils.data_handler import *
-from .app_utils.verification import Fetch_cache, set_cache,GenerateOTP,GenerateSlug
+from .app_utils.verification import Fetch_cache, set_cache,GenerateOTP,GenerateSlug,delete_pattern
 from .app_utils.mailer import SubjectAndMessageGenLogin, send_mail,SubjectAndMessageGenSignup,SubjectAndMessageGenFP,ConfirmationCPLogin, send_room_token_message
 from django.contrib.auth.models import User
 from django.core.cache import cache
@@ -83,13 +83,14 @@ class VerifyRegister(APIView):
             game = GameManager(index=user)
             token = game.Generate_Game_Token
             game.save()
-            subject,message = send_room_token_message(user.first_name,token)
-            send_mail(to=email,subject=subject,message=message)
             # deleting the created cache
             try:
-                cache.delete_pattern(email)
+                delete_pattern(email)
             except:
                 pass
+            subject,message = send_room_token_message(user.first_name,token)
+            send_mail(to=email,subject=subject,message=message)
+            
             return Response({'status':HTTP_200_OK,'message':f'user registerd successfully Your game token mailed to you.'})
 
         except Exception as e:
@@ -145,8 +146,8 @@ class VerifyLogin(APIView):
                 return Response({'status':HTTP_404_NOT_FOUND,'message':'User Not Found.'})
             login(request,user)
             try:
-                cache.delete_pattern(email)
-            except:
+                delete_pattern(email)
+            except Exception as e:
                 pass
             subject,message = ConfirmationCPLogin(email,is_fp=False)
             if send_mail(to=email,subject=subject,message=message):
@@ -210,7 +211,7 @@ class ValidateFPAPI(APIView):
                     user.set_password(data["password"])
                     user.save()
                     try:
-                        cache.delete_pattern(email)
+                        delete_pattern(email)
                     except:
                         pass
                     subject,message = ConfirmationCPLogin(email)

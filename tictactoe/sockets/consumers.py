@@ -4,6 +4,7 @@ from tictactoe.models import GameManager
 from asgiref.sync import sync_to_async
 from django.core.cache import cache
 from .gameutils import *
+from authuser.app_utils.verification import delete_pattern
 
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -37,12 +38,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 if gm.active_members == 2:
                     Game_Matrix = [['' for i in range(3)] for j in range(3)]
                     try:
-                        cache.delete_pattern(self.room_name)
+                        delete_pattern(self.room_name)
                     except:
                         pass
                     cache.set(self.room_name, Game_Matrix)
                     try:
-                        cache.delete_pattern(str(self.room_name)+"move")
+                        delete_pattern(str(self.room_name)+"move")
                     except:
                         pass
                     cache.set(str(self.room_name)+"move", "O")
@@ -142,7 +143,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             username = self.scope["user"].username
             pre_matrix = cache.get(self.room_name)
             try:
-                cache.delete_pattern(self.room_name)
+                delete_pattern(self.room_name)
             except:
                 pass
             i, j = getMatrixPositionByMove(message)
@@ -157,7 +158,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 pre_matrix[i][j] = self.player_id
                 additional = False
                 try:
-                    cache.delete_pattern(str(self.room_name)+"move")
+                    delete_pattern(str(self.room_name)+"move")
                 except:
                     pass
                 cache.set(str(self.room_name)+"move", self.player_id)

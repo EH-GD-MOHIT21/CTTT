@@ -2,6 +2,7 @@ import Passwordfield from "../muic/passwordfield";
 import Buttonfield from "../muic/buttonfield";
 import { useParams } from "react-router";
 import axios from "axios";
+import Progress from "../muic/progress";
 
 export default function Changepass(props) {
 
@@ -18,6 +19,7 @@ export default function Changepass(props) {
 
     async function submithandler(event){
         event.preventDefault();
+        document.getElementById('loginprogress').style.display = 'block';
         let response = await fetch('/auth/forgotpass/user='+user+'/token='+token, {
             credentials: 'include',
             method: 'POST',
@@ -33,7 +35,7 @@ export default function Changepass(props) {
             })
         })
         if (response.ok) { 
-            // document.getElementById('spinnerhandler').style.display = 'none';
+            document.getElementById('loginprogress').style.display = 'none';
             document.getElementById("verifier").style.display = 'block';
             let json = await response.json();
             let message = json["message"]
@@ -48,7 +50,7 @@ export default function Changepass(props) {
                 document.getElementById("verifier").style.fontWeight = 600;
             }
           } else {
-            // document.getElementById('spinnerhandler').style.display = 'none';
+            document.getElementById('loginprogress').style.display = 'none';
             alert("HTTP-Error: " + response.status);
           }
     }
@@ -57,6 +59,7 @@ export default function Changepass(props) {
     return (
         <div className="vh100">
             <div className="containerlogin" id="containerlogin">
+            <Progress className="loginprogress" id="loginprogress"/>
                 <form action="">
                 <div className="titlelog">
                     <h2>Welcome to CTTT.COM</h2>

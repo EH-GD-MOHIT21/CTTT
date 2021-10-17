@@ -86,6 +86,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE':'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dcup40u0a6to15',			
+#         'USER': 'uhhfouvvddbkic',			
+#         'PASSWORD': 'bb95380d501e4f3554b1b42bef616320e3aa67441340699000aa09ad91f13f17',				
+#         'HOST': 'ec2-35-175-17-88.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -173,5 +184,7 @@ BASE_URL = 'http://127.0.0.1:8000/'
 STATIC_ROOT = os.path.join(BASE_DIR,'build/static')
 
 SECOND_STATIC = os.path.join(BASE_DIR,'build')
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'build')
 
 CSRF_COOKIE_NAME = "X-CSRFToken"

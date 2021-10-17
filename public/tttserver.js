@@ -27,13 +27,21 @@ chatSocket.onmessage = function(e) {
         } catch (err) {}
         id = setInterval(mohitfunc, 1000, data);
         document.getElementById('settime').textContent = data.time;
-        document.getElementById(data.message).innerText = data.move;
+        if (data.move == 'X') {
+            document.getElementById(data.message).innerHTML = "<img src='/media/x.png'>";
+        } else {
+            document.getElementById(data.message).innerHTML = "<img src='/media/o.jpg'>";
+        }
         document.getElementById('loggame').innerText = "It's turn for " + data.next_move + " now";
     } else {
         document.getElementById('loggame').textContent = data.message;
     }
     if (data.is_game) {
-        document.getElementById(data.position).innerText = data.move;
+        if (data.move == 'X') {
+            document.getElementById(data.position).innerHTML = "<img src='/media/x.png'>";
+        } else {
+            document.getElementById(data.position).innerHTML = "<img src='/media/o.jpg'>";
+        }
         try {
             clearInterval(id);
         } catch (err) {}

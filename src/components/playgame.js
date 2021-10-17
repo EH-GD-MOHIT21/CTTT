@@ -38,24 +38,22 @@ export default function Playgame(props) {
     return (
         <>
         <div className="container-fluid">
-            <div className="row">
                 <div className="col" id="m1">-</div>
                 <div className="col" id="m2">-</div>
                 <div className="col" id="m3">-</div>
-            </div>
-            <div className="row">
+            
+            
                 <div className="col" id="m4">-</div>
                 <div className="col" id="m5">-</div>
                 <div className="col" id="m6">-</div>
-            </div>
-            <div className="row">
+            
+            
                 <div className="col" id="m7">-</div>
                 <div className="col" id="m8">-</div>
                 <div className="col" id="m9">-</div>
-            </div>
 
         </div>
-        <div className="container-fluid bottomhandler">
+        <div className="bottomhandler">
             <div className="logscontainergame">
                 <span id="loggame">Welcome to cttt.com</span>
             </div>

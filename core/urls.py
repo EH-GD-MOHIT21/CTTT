@@ -13,4 +13,5 @@ urlpatterns = [
 
 urlpatterns += [url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT})]
 urlpatterns += [url(r'^public/(?P<path>.*)$', serve,{'document_root': settings.SECOND_STATIC})]
+urlpatterns += [url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT})]
 urlpatterns += [re_path(r'^.*',TemplateView.as_view(template_name='index.html'))]

@@ -183,6 +183,7 @@
     align-items: center;
     cursor: pointer;
     overflow: hidden;
+    padding: 5px;
 }
 
 .col img {

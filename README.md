@@ -1,3 +1,44 @@
+# What is CTTT
+
+--> cttt is a plateform where you can play tictactoe with other player
+
+# Tech used
+
+-- Python (Django,DjangoRestFramework,DjangoChannels)
+--
+-- React js / Vanilla js 
+--
+-- CSS
+--
+-- Database : postgres(SQL)
+--
+
+# Features
+
+-- Two Factor Authentication Login/Signup
+--
+
+-- Caching to store otp/data with limited time access
+--
+
+-- APIS -> Login/Signup/Logout/checktoken/checkuser etc.
+--
+
+-- Time Limit in game if user is disconnected or not responded within time limit he'll lose.
+--
+
+-- Play Real Time TicTacToe with status
+--
+
+# Additional Features (to be included)
+
+-- I want to add voice chat Feature currently Researching about how to implement.
+--
+
+# Checkout here <a href="http://cttt.herokuapp.com/login">click here to see</a>
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
